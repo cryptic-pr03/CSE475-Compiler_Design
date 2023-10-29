@@ -1,0 +1,12 @@
+D:\sem7\compiler\as1\HelloWorld\HelloWorld\bin\Debug\HelloWorld.exe.config
+D:\sem7\compiler\as1\HelloWorld\HelloWorld\bin\Debug\HelloWorld.exe
+D:\sem7\compiler\as1\HelloWorld\HelloWorld\bin\Debug\HelloWorld.pdb
+D:\sem7\compiler\as1\HelloWorld\HelloWorld\bin\Debug\HelloWorld.xml
+D:\sem7\compiler\as1\HelloWorld\HelloWorld\obj\Debug\HelloWorld.vbproj.AssemblyReference.cache
+D:\sem7\compiler\as1\HelloWorld\HelloWorld\obj\Debug\HelloWorld.vbproj.SuggestedBindingRedirects.cache
+D:\sem7\compiler\as1\HelloWorld\HelloWorld\obj\Debug\HelloWorld.Resources.resources
+D:\sem7\compiler\as1\HelloWorld\HelloWorld\obj\Debug\HelloWorld.vbproj.GenerateResource.cache
+D:\sem7\compiler\as1\HelloWorld\HelloWorld\obj\Debug\HelloWorld.vbproj.CoreCompileInputs.cache
+D:\sem7\compiler\as1\HelloWorld\HelloWorld\obj\Debug\HelloWorld.exe
+D:\sem7\compiler\as1\HelloWorld\HelloWorld\obj\Debug\HelloWorld.xml
+D:\sem7\compiler\as1\HelloWorld\HelloWorld\obj\Debug\HelloWorld.pdb
