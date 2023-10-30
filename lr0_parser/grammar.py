@@ -31,6 +31,7 @@ def get_non_terminals(rules : list) -> list:
 def get_start_symbol(rules: list) -> str :
     return rules[0].split()[0]
 
+
 class Grammar:
     '''
     A class containing the grammar
@@ -64,7 +65,6 @@ class Grammar:
         res += "start_symbol = " + str(self.start_symbol) + "\n"
         return res
 
-
 def read_grammar(full_path : str) :
     '''
     Reads the grammar into an object of Grammar class
@@ -81,3 +81,19 @@ def read_grammar(full_path : str) :
 
     G = Grammar(rules)
     return G
+
+def format_rules(G : Grammar):
+	# populating rule_dict
+    rule_dict = {}
+    for rule in G.rules:
+        lhs, rhs = [r.strip() for r in rule.split("->")]	
+        subrules = rhs.split('|')
+        for i in range(len(subrules)):
+            subrules[i] = subrules[i].strip()
+            subrules[i] = subrules[i].split()
+
+        if(lhs not in rule_dict):
+            rule_dict[lhs] = []
+        for subrule in subrules:
+            rule_dict[lhs].append(subrule)
+    return rule_dict

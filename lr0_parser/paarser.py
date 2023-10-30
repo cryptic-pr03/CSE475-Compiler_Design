@@ -3,7 +3,7 @@ from collections import deque
 from grammar import Grammar
 from parse_table import Table
 
-def canonical_lr_parse(G : Grammar, input_string : str, table : Table, is_lr0_grammar : bool, rule_dict : dict) :
+def slr1_parse(G : Grammar, input_string : str, table : Table, is_lr0_grammar : bool, rule_dict : dict) :
     if not is_lr0_grammar:
         return False
     symbol_stack = []

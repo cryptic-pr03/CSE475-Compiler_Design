@@ -1,6 +1,5 @@
 from grammar import Grammar
 from dfa import DFA
-from follows import computeAllFOLLOW
 import utils as cout
 class Table :
     def __init__(self, ACTION, GOTO):
@@ -15,8 +14,6 @@ def generate_parse_table (G: Grammar, rule_dict : dict, dfa : DFA):
         ACTION (list) : ACTION[index_of_state][index_of_terminal]
         GOTO (list) : ACTION[index_of_state][index_of_non_terminal]
     '''
-    
-    FOLLOW = computeAllFOLLOW(G, rule_dict)
     
     is_lr0_grammar = True
     # create the initial empty dfa.states of ,matrix
@@ -33,7 +30,7 @@ def generate_parse_table (G: Grammar, rule_dict : dict, dfa : DFA):
                 if(lhs == "X") :
                     action[i][G.terminals.index('$')] =   f"ACCEPT, " + action[i][G.terminals.index('$')]         #ACCEPT
                 else :
-                    for t in FOLLOW[lhs]:
+                    for t in G.terminals:
                         action[i][G.terminals.index(t)] = f"R {lhs} {subrule_no}, " + action[i][G.terminals.index(t)]          #REDUCE
 
 
@@ -46,10 +43,9 @@ def generate_parse_table (G: Grammar, rule_dict : dict, dfa : DFA):
                 action[i][ti] = action[i][ti][:-2]
 
         for nti in range(len(G.non_terminals)):
-            if (i,G.non_terminals[nti]) in dfa.edges:
-                goto[i][nti] = dfa.edges[(i,G.non_terminals[nti])]
+            if G.non_terminals.index(G.start_symbol) is not nti:
+                if (i, G.non_terminals[nti]) in dfa.edges:
+                    goto[i][nti] = dfa.edges[(i, G.non_terminals[nti])]
 
     parse_table = Table(action, goto)
-    cout.print_table(parse_table, G)
-    print(f"\n{'-'*50}\n")
     return is_lr0_grammar, parse_table

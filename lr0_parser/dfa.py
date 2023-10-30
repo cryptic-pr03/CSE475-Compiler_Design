@@ -1,3 +1,4 @@
+# LR_0 DFA
 from goto_closure import goto, closure
 from grammar import Grammar
 

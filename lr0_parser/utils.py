@@ -53,21 +53,21 @@ def print_subrule(lhs, subrule_no, rule_dict):
     print(f"{lhs} -> {' '.join(subrule)}")
 
 
-def print_DFA(state,edges) :
+def print_DFA(dfa, rule_dict) :
     print("\nDFA:")
-    for i in range(len(state)):
+    for i in range(len(dfa.states)):
         print(f"[{i}]")
-        print_itemset(state[i])
+        print_itemset(dfa.states[i], rule_dict)
     
-    for e in edges.items():
-        print(e)
-        print("-"*20)
-        print_itemset(state[e[0][0]])
-        print(f"\t|\n\t| {e[0][1]}\n\t|\n\t\/\n")
-        print_itemset(state[e[1]])
-        print("\n")
+    # for e in dfa.edges.items():
+    #     print(e)
+    #     print("-"*20)
+    #     print_itemset(dfa.states[e[0][0]], rule_dict)
+    #     print(f"\t|\n\t| {e[0][1]}\n\t|\n\t\/\n")
+    #     print_itemset(dfa.states[e[1]], rule_dict)
+    #     print("\n")
 
-def print_table(table,  G):
+def print_table(G, table):
     print("\nTABLE:")
 
     #print headers1
@@ -82,7 +82,8 @@ def print_table(table,  G):
         print(t.ljust(10),end="")
     print(" ".ljust(3),end="")
     for nt in G.non_terminals:
-        print(str(nt).ljust(5),end="")
+        if nt is not G.start_symbol :
+            print(str(nt).ljust(5),end="")
     print("\n");
 
     for i in range(len(table.ACTION)) :
