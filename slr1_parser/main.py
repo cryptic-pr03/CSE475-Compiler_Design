@@ -38,16 +38,16 @@ def main():
     cout.print_DFA(DFA, rule_dict)
 
     # 3. generate parse table 
-    is_lr0_grammar, parse_table =  generate_parse_table(G, rule_dict, DFA)     
+    is_slr1_grammar, parse_table =  generate_parse_table(G, rule_dict, DFA)     
     cout.print_table(G, parse_table)   
 
-    if not is_lr0_grammar:
-        print("NOT LRO GRAMMAR")
+    if not is_slr1_grammar:
+        print("NOT SLR1 GRAMMAR")
         return
     
     # 4. parse the input string
     input_string = input("Enter string to be parsed: ")
-    if( slr1_parse(AG, input_string, parse_table, is_lr0_grammar, rule_dict)):
+    if( slr1_parse(AG, input_string, parse_table, is_slr1_grammar, rule_dict)):
         print("Parsing Successful\n")
     else :
         print("Parsing Unsuccessful\n")

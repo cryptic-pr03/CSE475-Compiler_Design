@@ -10,8 +10,8 @@ class Table :
 def generate_parse_table (G: Grammar, rule_dict : dict, dfa : DFA):
     '''
     Returns: 
-        tuple(is_lr0_grammar, action, goto)
-        is_lr0_grammar (bool): if grammar is lr0
+        tuple(is_slr1_grammar, action, goto)
+        is_slr1_grammar (bool): if grammar is lr0
         ACTION (list) : ACTION[index_of_state][index_of_terminal]
         GOTO (list) : ACTION[index_of_state][index_of_non_terminal]
     '''
@@ -19,7 +19,7 @@ def generate_parse_table (G: Grammar, rule_dict : dict, dfa : DFA):
     FOLLOW = computeAllFOLLOW(G, rule_dict)
     cout.print_FOLLOW(FOLLOW)
     
-    is_lr0_grammar = True
+    is_slr1_grammar = True
     # create the initial empty dfa.states of ,matrix
     action = []
     goto = []
@@ -41,7 +41,7 @@ def generate_parse_table (G: Grammar, rule_dict : dict, dfa : DFA):
         for ti in range(len(G.terminals)):
             if (i,G.terminals[ti]) in dfa.edges:
                 if action[i][ti]:
-                    is_lr0_grammar = False
+                    is_slr1_grammar = False
                 action[i][ti] = f"S {dfa.edges[(i,G.terminals[ti])]}, " + action[i][ti]
             if(action[i][ti]) :             # REMOVING last ", " 
                 action[i][ti] = action[i][ti][:-2]
@@ -51,4 +51,4 @@ def generate_parse_table (G: Grammar, rule_dict : dict, dfa : DFA):
                 goto[i][nti] = dfa.edges[(i,G.non_terminals[nti])]
 
     parse_table = Table(action, goto)
-    return is_lr0_grammar, parse_table
+    return is_slr1_grammar, parse_table
